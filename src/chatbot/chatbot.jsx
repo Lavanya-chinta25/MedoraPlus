@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import './Chatbot.css';
 
 const Chatbot = () => {
@@ -7,7 +6,6 @@ const Chatbot = () => {
   const [userInput, setUserInput] = useState('');
   const [chatphnno, setchatphnno] = useState('');
   const [chatId, setChatId] = useState(null);
-  const [botMessage, setBotMessage] = useState('');
 
   const handlePhoneSubmit = async () => {
     if (chatphnno.trim() !== '') {
@@ -23,31 +21,12 @@ const Chatbot = () => {
               const result = await response.json();
               console.log(result)
               setChatId(result.chatId);
+
           } catch (err) {
               console.log(err) 
           }
     }
-    if (chatphnno.trim() !== '') {
-      try {
-        const response1 =getChatById(chatphnno);
-        // Send data to Flask (main.py) at /receiveChatData endpoint
-        const url = `http://127.0.0.1:5000/receiveChatData`; // Flask backend URL
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: 'messagess=' + encodeURIComponent(response1.messages)
-        });
-  
-        const result = await response.json();
-        console.log(result+ "dkasd");
-      } catch (err) {
-        console.log("Error:", err);
-      }
-    }
   };
-
   
   const handleSend = async () => {
     if (userInput.trim() !== '') {
@@ -61,6 +40,7 @@ const Chatbot = () => {
       setUserInput('');
   
       // Handle the backend API for Flask (process_input)
+      let botMessage = null; // Initialize botMessage variable
       try {
         const response = await fetch('http://127.0.0.1:5000/process_input', {
           method: 'POST',
@@ -70,22 +50,21 @@ const Chatbot = () => {
           body: 'userInput=' + encodeURIComponent(userInput),
         });
   
-        const data = await response.json();
-  
-        // Create bot's response in the required format
-        setBotMessage(data.response)
-  
-        // Update the messages with the bot's response
-        // setMessages((prev) => [
-        //   ...prev,
-        //   botMessage,
-        // ]);
+        if (response.ok) {
+          const data = await response.json();
+          botMessage = { text: data.response, sender: 'bot' }; // Assign data.response to botMessage
+        } else {
+          throw new Error('Failed to fetch from Flask API');
+        }
       } catch (error) {
         console.error('Error from Flask API:', error);
       }
   
+      // Ensure that botMessage is defined before updating the state
+      
+  
       // Handle the backend API for Node.js (sendChat)
-      if (chatId && chatphnno) {
+      if (chatId && chatphnno && botMessage) {
         try {
           const url = `http://localhost:8080/sendChat/${chatphnno}`;
           const response = await fetch(url, {
@@ -95,7 +74,7 @@ const Chatbot = () => {
             },
             body: JSON.stringify({
               phoneNumber: chatphnno,
-              message: [newUserMessage, {text:botMessage,sender: 'bot'}], // Send both user and bot messages
+              message: [newUserMessage, botMessage], // Send both user and bot messages
               chatId: chatId,
             }),
           });
@@ -106,15 +85,15 @@ const Chatbot = () => {
             ...prev,
             { text: result.response, sender: 'bot' },
           ]);
-  
         } catch (error) {
           console.error('Error from Node.js API:', error);
         }
       }
     }
-  };  
-
+  };
   
+  
+
   const getChats = async () => {
     try {
       // Send GET request to the backend to fetch all chats
@@ -155,8 +134,6 @@ const Chatbot = () => {
       console.error('Error fetching chat:', error);
     }
   };
-
-  
 
   const handleKeyPress = (e) => {
     if (e.key === 'Enter') {
@@ -201,5 +178,6 @@ const Chatbot = () => {
       )}
     </div>
   );
-}
+};
+
 export default Chatbot;

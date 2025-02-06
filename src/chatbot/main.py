@@ -39,7 +39,7 @@ def home():
 # client = MongoClient("mongodb+srv://TarunPotnuru:tarun123@resumeapp.yrpea.mongodb.net/?retryWrites=true&w=majority&appName=ResumeApp")  # Replace with your MongoDB URI
 # db = client[""]  # Database name
 # collection = db["chats"]  # Collection name
-
+ 
 
 @app.route('/receiveChatData', methods=['POST'])
 def receiveChatData():

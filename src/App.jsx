@@ -26,7 +26,7 @@ const App = () => {
     location.pathname === '/Medora/signup' ||
     location.pathname === '/Medora/login' ||
     location.pathname === '/Medora/doctors';
-
+ 
   const isLoginOrSignup =
     location.pathname === '/Medora/signup' || location.pathname === '/Medora/login';
 

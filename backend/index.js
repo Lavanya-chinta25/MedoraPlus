@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const cors = require('cors');
 const PORT = process.env.PORT || 8080;
 const ChatModel = require('./models/sendChat');
-
+ 
 app.use(bodyParser.json());
 app.use(cors({
     origin: 'http://localhost:5173', // Allow requests from your frontend
