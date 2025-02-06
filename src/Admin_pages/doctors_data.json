@@ -1,0 +1,44 @@
+[
+    {
+      "id": 1,
+      "name": "Dr. Sarah Johnson",
+      "specialty": "General Medicine",
+      "availability": "Mon, Wed, Fri",
+      "location": "Rural Health Center A"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Michael Chen",
+      "specialty": "Pediatrics",
+      "availability": "Tue, Thu, Sat",
+      "location": "Rural Health Center B"
+    },
+    {
+      "id": 3,
+      "name": "Dr. Michael Chen",
+      "specialty": "Pediatrics",
+      "availability": "Tue, Thu, Sat",
+      "location": "Rural Health Center B"
+    },
+    {
+      "id": 4,
+      "name": "Dr. Michael Chen",
+      "specialty": "Pediatrics",
+      "availability": "Tue, Thu, Sat",
+      "location": "Rural Health Center B"
+    },
+    {
+      "id": 5,
+      "name": "Dr. Michael Chen",
+      "specialty": "Pediatrics",
+      "availability": "Tue, Thu, Sat",
+      "location": "Rural Health Center B"
+    },
+    {
+      "id": 6,
+      "name": "Dr. Michael Chen",
+      "specialty": "Pediatrics",
+      "availability": "Tue, Thu, Sat",
+      "location": "Rural Health Center B"
+    }
+  ]

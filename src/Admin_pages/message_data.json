@@ -1,0 +1,23 @@
+[
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "message": "Question about appointments - I would like to schedule an appointment for next week. What times are available?",
+      "status": "new"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Smith",
+      "email": "sarah@example.com",
+      "message": "Medical records request - Could you please send me my medical records from my last visit?",
+      "status": "read"
+    },
+    {
+      "id": 3,
+      "name": "Mike Johnson",
+      "email": "mike@example.com",
+      "message": "Insurance inquiry - I need information about accepted insurance plans.",
+      "status": "new"
+    }
+  ]

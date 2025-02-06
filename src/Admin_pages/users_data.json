@@ -1,0 +1,26 @@
+[
+    {
+      "id": 1,
+      "name": "John Smith",
+      "role": "Admin",
+      "email": "john.smith@example.com",
+      "status": "Active",
+      "joined": "Jan 2024"
+    },
+    {
+      "id": 2,
+      "name": "Sarah Johnson",
+      "role": "Doctor",
+      "email": "sarah.j@example.com",
+      "status": "Active",
+      "joined": "Dec 2023"
+    },
+    {
+      "id": 3,
+      "name": "Mitchel Brown",
+      "role": "Patient",
+      "email": "m.brown@example.com",
+      "status": "Pending",
+      "joined": "Feb 2024"
+    }
+  ]
