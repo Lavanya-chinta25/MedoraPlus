@@ -4,6 +4,11 @@ import { FaHome, FaUserMd, FaInfoCircle, FaPhoneAlt, FaCapsules } from 'react-ic
 import Logo from '../assets/logo.png';
 
 import "./Navbar.css";
+const handleEmergency = () => {
+  // Initiates a call to the emergency number 108
+  window.location.href = 'tel:108';
+};
+
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -48,6 +53,8 @@ const Navbar = () => {
               </NavLink>
             ))}
           </ul>
+    
+
 
           {/* Mobile Menu Toggle */}
           <div className="md:hidden flex items-center ml-auto">
@@ -59,7 +66,16 @@ const Navbar = () => {
               {showMenu ? '×' : '≡'}
             </button>
           </div>
+          
         </nav>
+        <div className="flex justify-end">
+            <button 
+              className="bg-[#b01e1ee0] mt-4 text-white px-4 py-2 rounded hover:bg-[#932121]"
+              onClick={handleEmergency}
+            >
+              Emergency
+            </button>
+          </div>
       </div>
 
       {/* Mobile Dropdown Menu */}
@@ -85,7 +101,11 @@ const Navbar = () => {
                 {item.icon} {item.label}
               </NavLink>
             ))}
+            
           </ul>
+          <button className="bg-[#b01e1ee0] text-white px-4 py-2 rounded hover:bg-[#153D55]" onClick={handleEmergency}>
+            Emergency!
+          </button>
         </div>
       )}
     </div>

@@ -4,12 +4,12 @@ import image2 from "../assets/about2.webp";
 import image3 from "../assets/about5.png";
 import image4 from "../assets/about4.jpg";
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 const images = [image1, image2, image3, image4];
-
 const Home = () => {
   const navigate = useNavigate();
-
+  const [msgval, setmsgval] = useState("");
   const handleClick = () => {
     navigate('/Medora/doctors'); // This will take you to the doctors page
   };
@@ -26,6 +26,24 @@ const Home = () => {
     return () => clearInterval(interval); // Cleanup the interval on unmount
   }, []);
 
+   
+  const handleSend = () => {
+    let numbers = [
+      "917093055425",  // Replace with actual numbers
+      "918309858080",
+      "916304330681"
+    ];
+    
+    let message = msgval;
+    
+    numbers.forEach((num, index) => {
+      setTimeout(() => {
+        window.open(`https://wa.me/${num}?text=${encodeURIComponent(message)}`, "_blank");
+      }, index * 2000);  // 2-second gap to avoid blocking
+    });
+     };
+  
+  
   return (
     <div className="relative w-full mt-10">
       {/* Image container */}
@@ -46,7 +64,13 @@ const Home = () => {
           </div>
         ))}
       </div>
-
+<div className="mt-2 p-3 w-full">
+  <input type="text" placeholder="enter message you want to pass" className="p-3 justify-center w-full border-4" id="inputField"
+         // Controlled input
+        onChange={()=>{
+          setmsgval(event.target.value)
+        }}></input>
+</div>
       {/* Buttons and Dots (Outside the Image Container) */}
       <div className="flex flex-col items-center mt-6">
         {/* Buttons  */}
@@ -56,6 +80,9 @@ const Home = () => {
           </button>
           <button className="bg-[#185a79] text-white px-4 py-2 rounded hover:bg-[#153D55]" onClick={handleClick}>
             View Doctors
+          </button>
+          <button className="bg-[#185a79] text-white px-4 py-2 rounded hover:bg-[#153D55]" onClick={handleSend}>
+            Send 
           </button>
         </div>
 
